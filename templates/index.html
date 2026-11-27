@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BriefAI — Custom Transformer Summarizer</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js" defer></script>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <span class="badge">Pre-Norm RMSNorm • SwiGLU • Flash Attention</span>
+            <h1>Custom Transformer Summarizer</h1>
+            <p>Paste a dialogue or passage below to generate a concise summary with your PyTorch model.</p>
+        </header>
+
+        <main class="grid">
+            <form id="summarize-form" class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Source Text</span>
+                    <button type="button" id="sample-btn" class="ghost-btn">Load Sample</button>
+                </div>
+
+                <textarea id="dialogue-input" placeholder="Paste your conversation or text here..." required></textarea>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="max-len">Max Length <strong id="len-val">80</strong></label>
+                        <input type="range" id="max-len" min="30" max="140" value="80" />
+                    </div>
+                    <div class="control-group">
+                        <label for="beam-size">Beam Width <strong id="beam-val">4</strong></label>
+                        <input type="range" id="beam-size" min="1" max="6" value="4" />
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <span class="meta" id="word-count">0 words</span>
+                    <button type="submit" id="submit-btn" class="primary-btn">Summarize</button>
+                </div>
+            </form>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Generated Summary</span>
+                    <button type="button" id="copy-btn" class="ghost-btn">Copy</button>
+                </div>
+
+                <div id="summary-output" class="output-box placeholder">
+                    Your summary will appear here...
+                </div>
+
+                <div class="status-bar">
+                    <span id="latency-info">Ready</span>
+                    <span id="summary-words">0 words</span>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
